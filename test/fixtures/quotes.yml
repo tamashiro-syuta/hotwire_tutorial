@@ -1,0 +1,9 @@
+# テストデータの追加
+first:
+  name: First quote
+
+second:
+  name: Second quote
+
+third:
+  name: Third quote
