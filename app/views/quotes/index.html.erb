@@ -1,9 +1,16 @@
 <main class="container">
   <div class="header">
     <h1>Quotes</h1>
+    <%# Turbo Drive あり %>
     <%= link_to "New quote",
                 new_quote_path,
                 class: "btn btn--primary" %>
+
+    <%# Turbo Drive なし %>
+    <%#= link_to "New quote",
+                new_quote_path,
+                class: "btn btn--primary",
+                data: { turbo: false } %>
   </div>
 
   <%= render @quotes %>
