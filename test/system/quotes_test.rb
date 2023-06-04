@@ -7,31 +7,25 @@ class QuotesTest < ApplicationSystemTestCase
     @quote = quotes(:first)
   end
 
-  test "Creating a new quote" do
-    # Quotesのindexページにアクセスしたとき "Quotes "というテキストを持つタイトルが表示される
-    visit quotes_path
-    assert_selector "h1", text: "Quotes"
+  test "Showing a quote" do
+    visit quotes_path                       # quotes_path にアクセスして
+    click_link @quote.name                  # 名前をクリックすると
 
-    # "New quote" というテキストを持つリンクをクリックすると、"New quote "というタイトルのページが表示される
-    # "New quote" というタイトルのページが表示される
-    click_on "New quote"
-    assert_selector "h1", text: "New quote"
-
-
-    # 名前入力に "Capybara quote "と記入し、"Create quote "をクリックすると
-    fill_in "Name", with: "Capybara quote"
-    click_on "Create quote"
-
-    # Quotesというタイトルでページに戻り、私たちの "Capybara quote" が追加されることを期待しています
-    assert_selector "h1", text: "Quotes"
-    assert_text "Capybara quote"
+    assert_selector "h1", text: @quote.name # h1タグに名前が表示されることをテスト
   end
 
-  test "Showing a quote" do
-    visit quotes_path
-    click_link @quote.name
+  test "Creating a new quote" do
+    visit quotes_path                      # quotes_path にアクセスすると
+    assert_selector "h1", text: "Quotes"   # ページ上に「Quotes」というテキストを含むh1要素が存在することをテスト
 
-    assert_selector "h1", text: @quote.name
+    click_on "New quote"                   # New quote ボタンをクリックして
+    fill_in "Name", with: "Capybara quote" # フォームの Name に Capybara quote と入力すると
+
+    assert_selector "h1", text: "Quotes"   # 「Quotes」というテキストを含むh1要素が存在することをテスト
+    click_on "Create quote"                # Create quote ボタンをクリックすると
+
+    assert_selector "h1", text: "Quotes"   # 「Quotes」というテキストを含むh1要素が存在することをテスト
+    assert_text "Capybara quote"           # ページ上に「Capybara quote」というテキストが表示されていることをテスト
   end
 
   test "Updating a quote" do
@@ -39,9 +33,9 @@ class QuotesTest < ApplicationSystemTestCase
     assert_selector "h1", text: "Quotes"
 
     click_on "Edit", match: :first
-    assert_selector "h1", text: "Edit quote"
-
     fill_in "Name", with: "Updated quote"
+
+    assert_selector "h1", text: "Quotes"
     click_on "Update quote"
 
     assert_selector "h1", text: "Quotes"
