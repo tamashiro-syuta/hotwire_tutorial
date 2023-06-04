@@ -6,3 +6,116 @@ Processing by Rails::WelcomeController#index as HTML
 Completed 200 OK in 13ms (Views: 3.7ms | ActiveRecord: 0.0ms | Allocations: 9134)
 
 
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1491499144867068645)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateQuotes (20230604060927)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (10.6ms)[0m  [1m[35mCREATE TABLE "quotes" ("id" bigserial primary key, "name" character varying NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230604060927"]]
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (3.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(1491499144867068645)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (3.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/users" for ::1 at 2023-06-04 15:50:53 +0900
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/users"):
+  
+Started GET "/users" for ::1 at 2023-06-04 15:50:53 +0900
+  
+ActionController::RoutingError (No route matches [GET] "/users"):
+  
+Started GET "/quotes" for ::1 at 2023-06-04 15:50:59 +0900
+Processing by QuotesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/index.html.erb within layouts/application
+  [1m[36mQuote Load (1.0ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes"[0m
+  ↳ app/views/quotes/index.html.erb:9
+  Rendered collection of templates [0 times] (Duration: 0.0ms | Allocations: 14)
+  Rendered quotes/index.html.erb within layouts/application (Duration: 2.9ms | Allocations: 926)
+  Rendered layout layouts/application.html.erb (Duration: 156.2ms | Allocations: 84793)
+Completed 200 OK in 164ms (Views: 156.5ms | ActiveRecord: 1.0ms | Allocations: 88586)
+
+
+Started GET "/quotes/new" for ::1 at 2023-06-04 15:51:01 +0900
+Processing by QuotesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/new.html.erb within layouts/application
+  Rendered quotes/_form.html.erb (Duration: 12.8ms | Allocations: 13438)
+  Rendered quotes/new.html.erb within layouts/application (Duration: 13.6ms | Allocations: 13844)
+  Rendered layout layouts/application.html.erb (Duration: 14.6ms | Allocations: 15468)
+Completed 200 OK in 33ms (Views: 14.8ms | ActiveRecord: 4.3ms | Allocations: 30495)
+
+
+Started POST "/quotes" for ::1 at 2023-06-04 15:51:15 +0900
+Processing by QuotesController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "quote"=>{"name"=>"quote_a"}, "commit"=>"Create quote"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/quotes_controller.rb:18:in `create'
+  [1m[36mQuote Create (1.3ms)[0m  [1m[32mINSERT INTO "quotes" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "quote_a"], ["created_at", "2023-06-04 06:51:15.661285"], ["updated_at", "2023-06-04 06:51:15.661285"]]
+  ↳ app/controllers/quotes_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/quotes_controller.rb:18:in `create'
+Redirected to http://localhost:3000/quotes
+Completed 302 Found in 5ms (ActiveRecord: 1.7ms | Allocations: 2670)
+
+
+Started GET "/quotes" for ::1 at 2023-06-04 15:51:15 +0900
+Processing by QuotesController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/index.html.erb within layouts/application
+  [1m[36mQuote Load (0.2ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes"[0m
+  ↳ app/views/quotes/index.html.erb:9
+  Rendered collection of quotes/_quote.html.erb [1 times] (Duration: 1.2ms | Allocations: 706)
+  Rendered quotes/index.html.erb within layouts/application (Duration: 2.6ms | Allocations: 1535)
+  Rendered layout layouts/application.html.erb (Duration: 3.8ms | Allocations: 3158)
+Completed 200 OK in 4ms (Views: 3.8ms | ActiveRecord: 0.2ms | Allocations: 3450)
+
+
+Started GET "/quotes/1" for ::1 at 2023-06-04 15:51:23 +0900
+Processing by QuotesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mQuote Load (0.6ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/quotes_controller.rb:44:in `set_quote'
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/show.html.erb within layouts/application
+  Rendered quotes/show.html.erb within layouts/application (Duration: 1.5ms | Allocations: 289)
+  Rendered layout layouts/application.html.erb (Duration: 4.3ms | Allocations: 2079)
+Completed 200 OK in 12ms (Views: 4.9ms | ActiveRecord: 0.9ms | Allocations: 4510)
+
+
+Started GET "/quotes/new" for ::1 at 2023-06-04 15:51:26 +0900
+Processing by QuotesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/new.html.erb within layouts/application
+  Rendered quotes/_form.html.erb (Duration: 4.8ms | Allocations: 3219)
+  Rendered quotes/new.html.erb within layouts/application (Duration: 5.4ms | Allocations: 3388)
+  Rendered layout layouts/application.html.erb (Duration: 6.6ms | Allocations: 5011)
+Completed 200 OK in 7ms (Views: 7.1ms | ActiveRecord: 0.0ms | Allocations: 5260)
+
+
+Started POST "/quotes" for ::1 at 2023-06-04 15:51:30 +0900
+Processing by QuotesController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "quote"=>{"name"=>"quote_b"}, "commit"=>"Create quote"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/quotes_controller.rb:18:in `create'
+  [1m[36mQuote Create (0.4ms)[0m  [1m[32mINSERT INTO "quotes" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "quote_b"], ["created_at", "2023-06-04 06:51:30.239884"], ["updated_at", "2023-06-04 06:51:30.239884"]]
+  ↳ app/controllers/quotes_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/quotes_controller.rb:18:in `create'
+Redirected to http://localhost:3000/quotes
+Completed 302 Found in 7ms (ActiveRecord: 1.3ms | Allocations: 2001)
+
+
+Started GET "/quotes" for ::1 at 2023-06-04 15:51:30 +0900
+Processing by QuotesController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/index.html.erb within layouts/application
+  [1m[36mQuote Load (0.4ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes"[0m
+  ↳ app/views/quotes/index.html.erb:9
+  Rendered collection of quotes/_quote.html.erb [2 times] (Duration: 1.0ms | Allocations: 766)
+  Rendered quotes/index.html.erb within layouts/application (Duration: 3.0ms | Allocations: 1453)
+  Rendered layout layouts/application.html.erb (Duration: 5.2ms | Allocations: 3076)
+Completed 200 OK in 6ms (Views: 5.2ms | ActiveRecord: 0.4ms | Allocations: 3321)
+
+

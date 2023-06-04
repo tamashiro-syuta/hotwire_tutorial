@@ -1,1 +1,989 @@
   [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.9ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (45.5ms)[0m  [1m[35mDROP DATABASE IF EXISTS "quote_editor_test"[0m
+  [1m[35m (109.3ms)[0m  [1m[35mCREATE DATABASE "quote_editor_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "quotes" CASCADE[0m
+  [1m[35m (3.0ms)[0m  [1m[35mCREATE TABLE "quotes" ("id" bigserial primary key, "name" character varying NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20230604060927)[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "test"], ["created_at", "2023-06-04 06:42:33.030313"], ["updated_at", "2023-06-04 06:42:33.030313"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "schema_sha1"], ["value", "236fe33cae3fe2cedf6283fa2a8dccfe543539e9"], ["created_at", "2023-06-04 06:42:33.032831"], ["updated_at", "2023-06-04 06:42:33.032831"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "quotes" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.8ms)[0m  [1m[31mDELETE FROM "quotes";
+INSERT INTO "quotes" ("id", "name", "created_at", "updated_at") VALUES (309456473, 'First quote', '2023-06-04 06:42:33.671815', '2023-06-04 06:42:33.671815'), (908005739, 'Second quote', '2023-06-04 06:42:33.671815', '2023-06-04 06:42:33.671815'), (607264868, 'Third quote', '2023-06-04 06:42:33.671815', '2023-06-04 06:42:33.671815')[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "quotes" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (22.3ms)[0m  [1m[35mdo $$
+  declare r record;
+BEGIN
+FOR r IN (
+  SELECT FORMAT(
+    'UPDATE pg_constraint SET convalidated=false WHERE conname = ''%I'' AND connamespace::regnamespace = ''%I''::regnamespace; ALTER TABLE %I.%I VALIDATE CONSTRAINT %I;',
+    constraint_name,
+    table_schema,
+    table_schema,
+    table_name,
+    constraint_name
+  ) AS constraint_check
+  FROM information_schema.table_constraints WHERE constraint_type = 'FOREIGN KEY'
+)
+  LOOP
+    EXECUTE (r.constraint_check);
+  END LOOP;
+END;
+$$;
+[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+--------------------------------
+QuotesTest: test_Showing_a_quote
+--------------------------------
+  [1m[36mQuote Load (0.1ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT $2[0m  [["id", 309456473], ["LIMIT", 1]]
+Started GET "/quotes" for 127.0.0.1 at 2023-06-04 15:42:35 +0900
+Processing by QuotesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/index.html.erb within layouts/application
+  [1m[36mQuote Load (0.7ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes"[0m
+  Rendered collection of quotes/_quote.html.erb [3 times] (Duration: 0.8ms | Allocations: 851)
+  Rendered quotes/index.html.erb within layouts/application (Duration: 2.9ms | Allocations: 1595)
+  Rendered layout layouts/application.html.erb (Duration: 226.3ms | Allocations: 72535)
+Completed 200 OK in 276ms (Views: 227.7ms | ActiveRecord: 0.7ms | Allocations: 78849)
+Started GET "/assets/application-a72913f4c604bc8f97dd576fc8777bf029401f6af0e14b6a6c9d3874acfe73e4.css" for 127.0.0.1 at 2023-06-04 15:42:35 +0900
+Started GET "/assets/application-7f36c5cb2ad2a6fbd98a7ef3472afbc7adc448d6665ecb846ebcd1633a265f21.js" for 127.0.0.1 at 2023-06-04 15:42:35 +0900
+Started GET "/quotes/309456473" for 127.0.0.1 at 2023-06-04 15:42:35 +0900
+Processing by QuotesController#show as HTML
+  Parameters: {"id"=>"309456473"}
+  [1m[36mQuote Load (0.6ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT $2[0m  [["id", 309456473], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/show.html.erb within layouts/application
+  Rendered quotes/show.html.erb within layouts/application (Duration: 2.7ms | Allocations: 320)
+  Rendered layout layouts/application.html.erb (Duration: 4.2ms | Allocations: 1638)
+Completed 200 OK in 6ms (Views: 4.5ms | ActiveRecord: 0.6ms | Allocations: 2133)
+  [1m[36mTRANSACTION (23.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------
+QuotesTest: test_Destroying_a_quote
+-----------------------------------
+  [1m[36mQuote Load (0.2ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT $2[0m  [["id", 309456473], ["LIMIT", 1]]
+Started GET "/quotes" for 127.0.0.1 at 2023-06-04 15:42:35 +0900
+Processing by QuotesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/index.html.erb within layouts/application
+  [1m[36mQuote Load (0.3ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes"[0m
+  Rendered collection of quotes/_quote.html.erb [3 times] (Duration: 0.3ms | Allocations: 631)
+  Rendered quotes/index.html.erb within layouts/application (Duration: 1.0ms | Allocations: 864)
+  Rendered layout layouts/application.html.erb (Duration: 1.3ms | Allocations: 1758)
+Completed 200 OK in 2ms (Views: 1.2ms | ActiveRecord: 0.3ms | Allocations: 1967)
+Started DELETE "/quotes/309456473" for 127.0.0.1 at 2023-06-04 15:42:35 +0900
+Processing by QuotesController#destroy as TURBO_STREAM
+  Parameters: {"id"=>"309456473"}
+  [1m[36mQuote Load (1.9ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT $2[0m  [["id", 309456473], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mQuote Destroy (0.3ms)[0m  [1m[31mDELETE FROM "quotes" WHERE "quotes"."id" = $1[0m  [["id", 309456473]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://127.0.0.1:51399/quotes
+Completed 302 Found in 4ms (ActiveRecord: 2.4ms | Allocations: 978)
+Started GET "/quotes" for 127.0.0.1 at 2023-06-04 15:42:35 +0900
+Processing by QuotesController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/index.html.erb within layouts/application
+  [1m[36mQuote Load (0.2ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes"[0m
+  Rendered collection of quotes/_quote.html.erb [2 times] (Duration: 0.2ms | Allocations: 422)
+  Rendered quotes/index.html.erb within layouts/application (Duration: 0.7ms | Allocations: 694)
+  Rendered layout layouts/application.html.erb (Duration: 1.0ms | Allocations: 1587)
+Completed 200 OK in 1ms (Views: 1.0ms | ActiveRecord: 0.2ms | Allocations: 1847)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+---------------------------------
+QuotesTest: test_Updating_a_quote
+---------------------------------
+  [1m[36mQuote Load (0.2ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT $2[0m  [["id", 309456473], ["LIMIT", 1]]
+Started GET "/quotes" for 127.0.0.1 at 2023-06-04 15:42:36 +0900
+Processing by QuotesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/index.html.erb within layouts/application
+  [1m[36mQuote Load (0.5ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes"[0m
+  Rendered collection of quotes/_quote.html.erb [3 times] (Duration: 0.2ms | Allocations: 628)
+  Rendered quotes/index.html.erb within layouts/application (Duration: 1.1ms | Allocations: 860)
+  Rendered layout layouts/application.html.erb (Duration: 1.4ms | Allocations: 1753)
+Completed 200 OK in 2ms (Views: 1.1ms | ActiveRecord: 0.5ms | Allocations: 1961)
+Started GET "/quotes/309456473/edit" for 127.0.0.1 at 2023-06-04 15:42:36 +0900
+Processing by QuotesController#edit as HTML
+  Parameters: {"id"=>"309456473"}
+  [1m[36mQuote Load (13.2ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT $2[0m  [["id", 309456473], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/edit.html.erb within layouts/application
+  Rendered quotes/_form.html.erb (Duration: 42.4ms | Allocations: 20070)
+  Rendered quotes/edit.html.erb within layouts/application (Duration: 44.1ms | Allocations: 20449)
+  Rendered layout layouts/application.html.erb (Duration: 44.4ms | Allocations: 21336)
+Completed 200 OK in 59ms (Views: 44.6ms | ActiveRecord: 13.2ms | Allocations: 23126)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------
+QuotesTest: test_Creating_a_new_quote
+-------------------------------------
+  [1m[36mQuote Load (0.1ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT $2[0m  [["id", 309456473], ["LIMIT", 1]]
+Started GET "/quotes" for 127.0.0.1 at 2023-06-04 15:42:38 +0900
+Processing by QuotesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/index.html.erb within layouts/application
+  [1m[36mQuote Load (0.2ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes"[0m
+  Rendered collection of quotes/_quote.html.erb [3 times] (Duration: 0.4ms | Allocations: 630)
+  Rendered quotes/index.html.erb within layouts/application (Duration: 1.1ms | Allocations: 864)
+  Rendered layout layouts/application.html.erb (Duration: 1.5ms | Allocations: 1759)
+Completed 200 OK in 2ms (Views: 1.4ms | ActiveRecord: 0.2ms | Allocations: 1969)
+Started GET "/quotes/new" for 127.0.0.1 at 2023-06-04 15:42:38 +0900
+Processing by QuotesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/new.html.erb within layouts/application
+  Rendered quotes/_form.html.erb (Duration: 0.8ms | Allocations: 797)
+  Rendered quotes/new.html.erb within layouts/application (Duration: 1.7ms | Allocations: 1120)
+  Rendered layout layouts/application.html.erb (Duration: 2.1ms | Allocations: 2014)
+Completed 200 OK in 3ms (Views: 2.6ms | ActiveRecord: 0.0ms | Allocations: 2808)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "quotes" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM "quotes";
+INSERT INTO "quotes" ("id", "name", "created_at", "updated_at") VALUES (309456473, 'First quote', '2023-06-04 06:43:23.976607', '2023-06-04 06:43:23.976607'), (908005739, 'Second quote', '2023-06-04 06:43:23.976607', '2023-06-04 06:43:23.976607'), (607264868, 'Third quote', '2023-06-04 06:43:23.976607', '2023-06-04 06:43:23.976607')[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "quotes" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (6.1ms)[0m  [1m[35mdo $$
+  declare r record;
+BEGIN
+FOR r IN (
+  SELECT FORMAT(
+    'UPDATE pg_constraint SET convalidated=false WHERE conname = ''%I'' AND connamespace::regnamespace = ''%I''::regnamespace; ALTER TABLE %I.%I VALIDATE CONSTRAINT %I;',
+    constraint_name,
+    table_schema,
+    table_schema,
+    table_name,
+    constraint_name
+  ) AS constraint_check
+  FROM information_schema.table_constraints WHERE constraint_type = 'FOREIGN KEY'
+)
+  LOOP
+    EXECUTE (r.constraint_check);
+  END LOOP;
+END;
+$$;
+[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------
+QuotesTest: test_Creating_a_new_quote
+-------------------------------------
+  [1m[36mQuote Load (0.1ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT $2[0m  [["id", 309456473], ["LIMIT", 1]]
+Started GET "/quotes" for 127.0.0.1 at 2023-06-04 15:43:25 +0900
+Processing by QuotesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/index.html.erb within layouts/application
+  [1m[36mQuote Load (0.5ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes"[0m
+  Rendered collection of quotes/_quote.html.erb [3 times] (Duration: 0.6ms | Allocations: 851)
+  Rendered quotes/index.html.erb within layouts/application (Duration: 2.3ms | Allocations: 1596)
+  Rendered layout layouts/application.html.erb (Duration: 28.8ms | Allocations: 21144)
+Completed 200 OK in 34ms (Views: 29.8ms | ActiveRecord: 0.5ms | Allocations: 27315)
+Started GET "/assets/application-a72913f4c604bc8f97dd576fc8777bf029401f6af0e14b6a6c9d3874acfe73e4.css" for 127.0.0.1 at 2023-06-04 15:43:25 +0900
+Started GET "/assets/application-7f36c5cb2ad2a6fbd98a7ef3472afbc7adc448d6665ecb846ebcd1633a265f21.js" for 127.0.0.1 at 2023-06-04 15:43:25 +0900
+Started GET "/quotes/new" for 127.0.0.1 at 2023-06-04 15:43:25 +0900
+Processing by QuotesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/new.html.erb within layouts/application
+  Rendered quotes/_form.html.erb (Duration: 17.5ms | Allocations: 15095)
+  Rendered quotes/new.html.erb within layouts/application (Duration: 18.6ms | Allocations: 15504)
+  Rendered layout layouts/application.html.erb (Duration: 19.0ms | Allocations: 16400)
+Completed 200 OK in 20ms (Views: 19.2ms | ActiveRecord: 0.0ms | Allocations: 16683)
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+---------------------------------
+QuotesTest: test_Updating_a_quote
+---------------------------------
+  [1m[36mQuote Load (0.3ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT $2[0m  [["id", 309456473], ["LIMIT", 1]]
+Started GET "/quotes" for 127.0.0.1 at 2023-06-04 15:43:27 +0900
+Processing by QuotesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/index.html.erb within layouts/application
+  [1m[36mQuote Load (0.4ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes"[0m
+  Rendered collection of quotes/_quote.html.erb [3 times] (Duration: 0.3ms | Allocations: 631)
+  Rendered quotes/index.html.erb within layouts/application (Duration: 1.2ms | Allocations: 865)
+  Rendered layout layouts/application.html.erb (Duration: 1.6ms | Allocations: 1760)
+Completed 200 OK in 2ms (Views: 1.4ms | ActiveRecord: 0.4ms | Allocations: 1970)
+Started GET "/quotes/309456473/edit" for 127.0.0.1 at 2023-06-04 15:43:27 +0900
+Processing by QuotesController#edit as HTML
+  Parameters: {"id"=>"309456473"}
+  [1m[36mQuote Load (0.3ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT $2[0m  [["id", 309456473], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/edit.html.erb within layouts/application
+  Rendered quotes/_form.html.erb (Duration: 0.8ms | Allocations: 867)
+  Rendered quotes/edit.html.erb within layouts/application (Duration: 1.7ms | Allocations: 1194)
+  Rendered layout layouts/application.html.erb (Duration: 2.0ms | Allocations: 2082)
+Completed 200 OK in 3ms (Views: 2.2ms | ActiveRecord: 0.3ms | Allocations: 2557)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+--------------------------------
+QuotesTest: test_Showing_a_quote
+--------------------------------
+  [1m[36mQuote Load (0.2ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT $2[0m  [["id", 309456473], ["LIMIT", 1]]
+Started GET "/quotes" for 127.0.0.1 at 2023-06-04 15:43:30 +0900
+Processing by QuotesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/index.html.erb within layouts/application
+  [1m[36mQuote Load (0.5ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes"[0m
+  Rendered collection of quotes/_quote.html.erb [3 times] (Duration: 0.4ms | Allocations: 630)
+  Rendered quotes/index.html.erb within layouts/application (Duration: 1.3ms | Allocations: 872)
+  Rendered layout layouts/application.html.erb (Duration: 1.7ms | Allocations: 1767)
+Completed 200 OK in 2ms (Views: 1.4ms | ActiveRecord: 0.5ms | Allocations: 1978)
+Started GET "/quotes/309456473" for 127.0.0.1 at 2023-06-04 15:43:30 +0900
+Processing by QuotesController#show as HTML
+  Parameters: {"id"=>"309456473"}
+  [1m[36mQuote Load (0.3ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT $2[0m  [["id", 309456473], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/show.html.erb within layouts/application
+  Rendered quotes/show.html.erb within layouts/application (Duration: 0.7ms | Allocations: 289)
+  Rendered layout layouts/application.html.erb (Duration: 2.5ms | Allocations: 1176)
+Completed 200 OK in 4ms (Views: 2.8ms | ActiveRecord: 0.3ms | Allocations: 2135)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------
+QuotesTest: test_Destroying_a_quote
+-----------------------------------
+  [1m[36mQuote Load (0.2ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT $2[0m  [["id", 309456473], ["LIMIT", 1]]
+Started GET "/quotes" for 127.0.0.1 at 2023-06-04 15:43:30 +0900
+Processing by QuotesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/index.html.erb within layouts/application
+  [1m[36mQuote Load (0.7ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes"[0m
+  Rendered collection of quotes/_quote.html.erb [3 times] (Duration: 0.3ms | Allocations: 631)
+  Rendered quotes/index.html.erb within layouts/application (Duration: 1.4ms | Allocations: 864)
+  Rendered layout layouts/application.html.erb (Duration: 1.7ms | Allocations: 1758)
+Completed 200 OK in 2ms (Views: 1.2ms | ActiveRecord: 0.7ms | Allocations: 1967)
+Started DELETE "/quotes/309456473" for 127.0.0.1 at 2023-06-04 15:43:30 +0900
+Processing by QuotesController#destroy as TURBO_STREAM
+  Parameters: {"id"=>"309456473"}
+  [1m[36mQuote Load (0.3ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT $2[0m  [["id", 309456473], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (3.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mQuote Destroy (0.4ms)[0m  [1m[31mDELETE FROM "quotes" WHERE "quotes"."id" = $1[0m  [["id", 309456473]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://127.0.0.1:51607/quotes
+Completed 302 Found in 6ms (ActiveRecord: 4.0ms | Allocations: 1521)
+Started GET "/quotes" for 127.0.0.1 at 2023-06-04 15:43:30 +0900
+Processing by QuotesController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/index.html.erb within layouts/application
+  [1m[36mQuote Load (0.3ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes"[0m
+  Rendered collection of quotes/_quote.html.erb [2 times] (Duration: 0.2ms | Allocations: 422)
+  Rendered quotes/index.html.erb within layouts/application (Duration: 0.8ms | Allocations: 694)
+  Rendered layout layouts/application.html.erb (Duration: 1.1ms | Allocations: 1587)
+Completed 200 OK in 1ms (Views: 1.0ms | ActiveRecord: 0.3ms | Allocations: 1847)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.9ms)[0m  [1m[35mALTER TABLE "quotes" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.8ms)[0m  [1m[31mDELETE FROM "quotes";
+INSERT INTO "quotes" ("id", "name", "created_at", "updated_at") VALUES (309456473, 'First quote', '2023-06-04 06:45:12.489156', '2023-06-04 06:45:12.489156'), (908005739, 'Second quote', '2023-06-04 06:45:12.489156', '2023-06-04 06:45:12.489156'), (607264868, 'Third quote', '2023-06-04 06:45:12.489156', '2023-06-04 06:45:12.489156')[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "quotes" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (11.6ms)[0m  [1m[35mdo $$
+  declare r record;
+BEGIN
+FOR r IN (
+  SELECT FORMAT(
+    'UPDATE pg_constraint SET convalidated=false WHERE conname = ''%I'' AND connamespace::regnamespace = ''%I''::regnamespace; ALTER TABLE %I.%I VALIDATE CONSTRAINT %I;',
+    constraint_name,
+    table_schema,
+    table_schema,
+    table_name,
+    constraint_name
+  ) AS constraint_check
+  FROM information_schema.table_constraints WHERE constraint_type = 'FOREIGN KEY'
+)
+  LOOP
+    EXECUTE (r.constraint_check);
+  END LOOP;
+END;
+$$;
+[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+---------------------------------
+QuotesTest: test_Updating_a_quote
+---------------------------------
+  [1m[36mQuote Load (0.2ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT $2[0m  [["id", 309456473], ["LIMIT", 1]]
+Started GET "/quotes" for 127.0.0.1 at 2023-06-04 15:45:14 +0900
+Processing by QuotesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/index.html.erb within layouts/application
+  [1m[36mQuote Load (1.3ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes"[0m
+  Rendered collection of quotes/_quote.html.erb [3 times] (Duration: 0.8ms | Allocations: 851)
+  Rendered quotes/index.html.erb within layouts/application (Duration: 3.7ms | Allocations: 1596)
+  Rendered layout layouts/application.html.erb (Duration: 31.8ms | Allocations: 20884)
+Completed 200 OK in 39ms (Views: 32.2ms | ActiveRecord: 1.3ms | Allocations: 27056)
+Started GET "/assets/application-a72913f4c604bc8f97dd576fc8777bf029401f6af0e14b6a6c9d3874acfe73e4.css" for 127.0.0.1 at 2023-06-04 15:45:14 +0900
+Started GET "/assets/application-7f36c5cb2ad2a6fbd98a7ef3472afbc7adc448d6665ecb846ebcd1633a265f21.js" for 127.0.0.1 at 2023-06-04 15:45:14 +0900
+Started GET "/quotes/309456473/edit" for 127.0.0.1 at 2023-06-04 15:45:14 +0900
+Processing by QuotesController#edit as HTML
+  Parameters: {"id"=>"309456473"}
+  [1m[36mQuote Load (32.3ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT $2[0m  [["id", 309456473], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/edit.html.erb within layouts/application
+  Rendered quotes/_form.html.erb (Duration: 15.5ms | Allocations: 14021)
+  Rendered quotes/edit.html.erb within layouts/application (Duration: 16.9ms | Allocations: 14977)
+  Rendered layout layouts/application.html.erb (Duration: 17.2ms | Allocations: 15865)
+Completed 200 OK in 51ms (Views: 17.4ms | ActiveRecord: 32.3ms | Allocations: 18874)
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------
+QuotesTest: test_Creating_a_new_quote
+-------------------------------------
+  [1m[36mQuote Load (0.3ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT $2[0m  [["id", 309456473], ["LIMIT", 1]]
+Started GET "/quotes" for 127.0.0.1 at 2023-06-04 15:45:16 +0900
+Processing by QuotesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/index.html.erb within layouts/application
+  [1m[36mQuote Load (0.4ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes"[0m
+  Rendered collection of quotes/_quote.html.erb [3 times] (Duration: 0.3ms | Allocations: 630)
+  Rendered quotes/index.html.erb within layouts/application (Duration: 1.1ms | Allocations: 873)
+  Rendered layout layouts/application.html.erb (Duration: 1.5ms | Allocations: 1769)
+Completed 200 OK in 2ms (Views: 1.2ms | ActiveRecord: 0.4ms | Allocations: 1988)
+Started GET "/quotes/new" for 127.0.0.1 at 2023-06-04 15:45:16 +0900
+Processing by QuotesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/new.html.erb within layouts/application
+  Rendered quotes/_form.html.erb (Duration: 0.6ms | Allocations: 797)
+  Rendered quotes/new.html.erb within layouts/application (Duration: 1.5ms | Allocations: 1122)
+  Rendered layout layouts/application.html.erb (Duration: 1.8ms | Allocations: 2016)
+Completed 200 OK in 2ms (Views: 2.0ms | ActiveRecord: 0.0ms | Allocations: 2290)
+Started POST "/quotes" for 127.0.0.1 at 2023-06-04 15:45:17 +0900
+Processing by QuotesController#create as TURBO_STREAM
+  Parameters: {"quote"=>{"name"=>"Capybara quote"}, "commit"=>"作成"}
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mQuote Create (5.6ms)[0m  [1m[32mINSERT INTO "quotes" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Capybara quote"], ["created_at", "2023-06-04 06:45:17.071975"], ["updated_at", "2023-06-04 06:45:17.071975"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://127.0.0.1:52044/quotes
+Completed 302 Found in 8ms (ActiveRecord: 6.0ms | Allocations: 2135)
+Started GET "/quotes" for 127.0.0.1 at 2023-06-04 15:45:17 +0900
+Processing by QuotesController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/index.html.erb within layouts/application
+  [1m[36mQuote Load (2.2ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes"[0m
+  Rendered collection of quotes/_quote.html.erb [4 times] (Duration: 0.4ms | Allocations: 836)
+  Rendered quotes/index.html.erb within layouts/application (Duration: 3.0ms | Allocations: 1130)
+  Rendered layout layouts/application.html.erb (Duration: 3.4ms | Allocations: 2023)
+Completed 200 OK in 4ms (Views: 1.4ms | ActiveRecord: 2.2ms | Allocations: 2284)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------
+QuotesTest: test_Destroying_a_quote
+-----------------------------------
+  [1m[36mQuote Load (0.2ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT $2[0m  [["id", 309456473], ["LIMIT", 1]]
+Started GET "/quotes" for 127.0.0.1 at 2023-06-04 15:45:17 +0900
+Processing by QuotesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/index.html.erb within layouts/application
+  [1m[36mQuote Load (6.0ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes"[0m
+  Rendered collection of quotes/_quote.html.erb [3 times] (Duration: 0.3ms | Allocations: 628)
+  Rendered quotes/index.html.erb within layouts/application (Duration: 6.8ms | Allocations: 860)
+  Rendered layout layouts/application.html.erb (Duration: 7.2ms | Allocations: 1753)
+Completed 200 OK in 8ms (Views: 1.3ms | ActiveRecord: 6.0ms | Allocations: 1961)
+Started DELETE "/quotes/309456473" for 127.0.0.1 at 2023-06-04 15:45:17 +0900
+Processing by QuotesController#destroy as TURBO_STREAM
+  Parameters: {"id"=>"309456473"}
+  [1m[36mQuote Load (0.3ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT $2[0m  [["id", 309456473], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mQuote Destroy (0.3ms)[0m  [1m[31mDELETE FROM "quotes" WHERE "quotes"."id" = $1[0m  [["id", 309456473]]
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://127.0.0.1:52044/quotes
+Completed 302 Found in 3ms (ActiveRecord: 1.7ms | Allocations: 485)
+Started GET "/quotes" for 127.0.0.1 at 2023-06-04 15:45:17 +0900
+Processing by QuotesController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/index.html.erb within layouts/application
+  [1m[36mQuote Load (0.5ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes"[0m
+  Rendered collection of quotes/_quote.html.erb [2 times] (Duration: 0.3ms | Allocations: 422)
+  Rendered quotes/index.html.erb within layouts/application (Duration: 1.1ms | Allocations: 647)
+  Rendered layout layouts/application.html.erb (Duration: 1.6ms | Allocations: 1540)
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.5ms | Allocations: 1753)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+--------------------------------
+QuotesTest: test_Showing_a_quote
+--------------------------------
+  [1m[36mQuote Load (0.2ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT $2[0m  [["id", 309456473], ["LIMIT", 1]]
+Started GET "/quotes" for 127.0.0.1 at 2023-06-04 15:45:17 +0900
+Processing by QuotesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/index.html.erb within layouts/application
+  [1m[36mQuote Load (0.2ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes"[0m
+  Rendered collection of quotes/_quote.html.erb [3 times] (Duration: 0.2ms | Allocations: 628)
+  Rendered quotes/index.html.erb within layouts/application (Duration: 0.8ms | Allocations: 860)
+  Rendered layout layouts/application.html.erb (Duration: 1.1ms | Allocations: 1753)
+Completed 200 OK in 1ms (Views: 1.1ms | ActiveRecord: 0.2ms | Allocations: 1961)
+Started GET "/quotes/309456473" for 127.0.0.1 at 2023-06-04 15:45:17 +0900
+Processing by QuotesController#show as HTML
+  Parameters: {"id"=>"309456473"}
+  [1m[36mQuote Load (5.6ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT $2[0m  [["id", 309456473], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/show.html.erb within layouts/application
+  Rendered quotes/show.html.erb within layouts/application (Duration: 0.9ms | Allocations: 284)
+  Rendered layout layouts/application.html.erb (Duration: 1.4ms | Allocations: 1171)
+Completed 200 OK in 9ms (Views: 2.0ms | ActiveRecord: 5.6ms | Allocations: 2094)
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "quotes" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[31mDELETE FROM "quotes";
+INSERT INTO "quotes" ("id", "name", "created_at", "updated_at") VALUES (309456473, 'First quote', '2023-06-04 06:45:52.131892', '2023-06-04 06:45:52.131892'), (908005739, 'Second quote', '2023-06-04 06:45:52.131892', '2023-06-04 06:45:52.131892'), (607264868, 'Third quote', '2023-06-04 06:45:52.131892', '2023-06-04 06:45:52.131892')[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "quotes" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (8.5ms)[0m  [1m[35mdo $$
+  declare r record;
+BEGIN
+FOR r IN (
+  SELECT FORMAT(
+    'UPDATE pg_constraint SET convalidated=false WHERE conname = ''%I'' AND connamespace::regnamespace = ''%I''::regnamespace; ALTER TABLE %I.%I VALIDATE CONSTRAINT %I;',
+    constraint_name,
+    table_schema,
+    table_schema,
+    table_name,
+    constraint_name
+  ) AS constraint_check
+  FROM information_schema.table_constraints WHERE constraint_type = 'FOREIGN KEY'
+)
+  LOOP
+    EXECUTE (r.constraint_check);
+  END LOOP;
+END;
+$$;
+[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+---------------------------------
+QuotesTest: test_Updating_a_quote
+---------------------------------
+  [1m[36mQuote Load (0.2ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT $2[0m  [["id", 309456473], ["LIMIT", 1]]
+Started GET "/quotes" for 127.0.0.1 at 2023-06-04 15:45:53 +0900
+Processing by QuotesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/index.html.erb within layouts/application
+  [1m[36mQuote Load (0.4ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes"[0m
+  Rendered collection of quotes/_quote.html.erb [3 times] (Duration: 0.7ms | Allocations: 851)
+  Rendered quotes/index.html.erb within layouts/application (Duration: 2.6ms | Allocations: 1596)
+  Rendered layout layouts/application.html.erb (Duration: 29.5ms | Allocations: 21092)
+Completed 200 OK in 36ms (Views: 30.9ms | ActiveRecord: 0.4ms | Allocations: 27264)
+Started GET "/assets/application-a72913f4c604bc8f97dd576fc8777bf029401f6af0e14b6a6c9d3874acfe73e4.css" for 127.0.0.1 at 2023-06-04 15:45:53 +0900
+Started GET "/assets/application-7f36c5cb2ad2a6fbd98a7ef3472afbc7adc448d6665ecb846ebcd1633a265f21.js" for 127.0.0.1 at 2023-06-04 15:45:53 +0900
+Started GET "/quotes/309456473/edit" for 127.0.0.1 at 2023-06-04 15:45:53 +0900
+Processing by QuotesController#edit as HTML
+  Parameters: {"id"=>"309456473"}
+  [1m[36mQuote Load (2.6ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT $2[0m  [["id", 309456473], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/edit.html.erb within layouts/application
+  Rendered quotes/_form.html.erb (Duration: 18.0ms | Allocations: 13885)
+  Rendered quotes/edit.html.erb within layouts/application (Duration: 19.0ms | Allocations: 14297)
+  Rendered layout layouts/application.html.erb (Duration: 19.4ms | Allocations: 15186)
+Completed 200 OK in 23ms (Views: 19.7ms | ActiveRecord: 2.6ms | Allocations: 15683)
+Started PATCH "/quotes/309456473" for 127.0.0.1 at 2023-06-04 15:45:53 +0900
+Processing by QuotesController#update as TURBO_STREAM
+  Parameters: {"quote"=>{"name"=>"Updated quote"}, "commit"=>"編集", "id"=>"309456473"}
+  [1m[36mCACHE Quote Load (0.0ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT $2[0m  [["id", 309456473], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mQuote Update (0.3ms)[0m  [1m[33mUPDATE "quotes" SET "name" = $1, "updated_at" = $2 WHERE "quotes"."id" = $3[0m  [["name", "Updated quote"], ["updated_at", "2023-06-04 06:45:53.911776"], ["id", 309456473]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://127.0.0.1:52201/quotes
+Completed 302 Found in 3ms (ActiveRecord: 0.8ms | Allocations: 1345)
+Started GET "/quotes" for 127.0.0.1 at 2023-06-04 15:45:53 +0900
+Processing by QuotesController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/index.html.erb within layouts/application
+  [1m[36mQuote Load (0.1ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes"[0m
+  Rendered collection of quotes/_quote.html.erb [3 times] (Duration: 0.2ms | Allocations: 630)
+  Rendered quotes/index.html.erb within layouts/application (Duration: 0.7ms | Allocations: 914)
+  Rendered layout layouts/application.html.erb (Duration: 1.1ms | Allocations: 1807)
+Completed 200 OK in 1ms (Views: 1.1ms | ActiveRecord: 0.1ms | Allocations: 2068)
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+--------------------------------
+QuotesTest: test_Showing_a_quote
+--------------------------------
+  [1m[36mQuote Load (3.4ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT $2[0m  [["id", 309456473], ["LIMIT", 1]]
+Started GET "/quotes" for 127.0.0.1 at 2023-06-04 15:45:56 +0900
+Processing by QuotesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/index.html.erb within layouts/application
+  [1m[36mQuote Load (0.2ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes"[0m
+  Rendered collection of quotes/_quote.html.erb [3 times] (Duration: 0.3ms | Allocations: 629)
+  Rendered quotes/index.html.erb within layouts/application (Duration: 0.9ms | Allocations: 861)
+  Rendered layout layouts/application.html.erb (Duration: 1.3ms | Allocations: 1756)
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.2ms | Allocations: 1965)
+Started GET "/quotes/309456473" for 127.0.0.1 at 2023-06-04 15:45:56 +0900
+Processing by QuotesController#show as HTML
+  Parameters: {"id"=>"309456473"}
+  [1m[36mQuote Load (0.4ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT $2[0m  [["id", 309456473], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/show.html.erb within layouts/application
+  Rendered quotes/show.html.erb within layouts/application (Duration: 0.8ms | Allocations: 292)
+  Rendered layout layouts/application.html.erb (Duration: 1.1ms | Allocations: 1179)
+Completed 200 OK in 3ms (Views: 1.4ms | ActiveRecord: 0.4ms | Allocations: 2138)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------
+QuotesTest: test_Destroying_a_quote
+-----------------------------------
+  [1m[36mQuote Load (0.2ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT $2[0m  [["id", 309456473], ["LIMIT", 1]]
+Started GET "/quotes" for 127.0.0.1 at 2023-06-04 15:45:56 +0900
+Processing by QuotesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/index.html.erb within layouts/application
+  [1m[36mQuote Load (4.8ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes"[0m
+  Rendered collection of quotes/_quote.html.erb [3 times] (Duration: 0.3ms | Allocations: 630)
+  Rendered quotes/index.html.erb within layouts/application (Duration: 5.4ms | Allocations: 863)
+  Rendered layout layouts/application.html.erb (Duration: 5.7ms | Allocations: 1756)
+Completed 200 OK in 6ms (Views: 1.1ms | ActiveRecord: 4.8ms | Allocations: 1965)
+Started DELETE "/quotes/309456473" for 127.0.0.1 at 2023-06-04 15:45:56 +0900
+Processing by QuotesController#destroy as TURBO_STREAM
+  Parameters: {"id"=>"309456473"}
+  [1m[36mQuote Load (12.7ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT $2[0m  [["id", 309456473], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mQuote Destroy (0.2ms)[0m  [1m[31mDELETE FROM "quotes" WHERE "quotes"."id" = $1[0m  [["id", 309456473]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://127.0.0.1:52201/quotes
+Completed 302 Found in 14ms (ActiveRecord: 13.1ms | Allocations: 1828)
+Started GET "/quotes" for 127.0.0.1 at 2023-06-04 15:45:56 +0900
+Processing by QuotesController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/index.html.erb within layouts/application
+  [1m[36mQuote Load (0.2ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes"[0m
+  Rendered collection of quotes/_quote.html.erb [2 times] (Duration: 0.2ms | Allocations: 422)
+  Rendered quotes/index.html.erb within layouts/application (Duration: 0.7ms | Allocations: 647)
+  Rendered layout layouts/application.html.erb (Duration: 1.0ms | Allocations: 1540)
+Completed 200 OK in 1ms (Views: 1.0ms | ActiveRecord: 0.2ms | Allocations: 1753)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------
+QuotesTest: test_Creating_a_new_quote
+-------------------------------------
+  [1m[36mQuote Load (0.1ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT $2[0m  [["id", 309456473], ["LIMIT", 1]]
+Started GET "/quotes" for 127.0.0.1 at 2023-06-04 15:45:56 +0900
+Processing by QuotesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/index.html.erb within layouts/application
+  [1m[36mQuote Load (5.8ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes"[0m
+  Rendered collection of quotes/_quote.html.erb [3 times] (Duration: 0.3ms | Allocations: 628)
+  Rendered quotes/index.html.erb within layouts/application (Duration: 6.5ms | Allocations: 860)
+  Rendered layout layouts/application.html.erb (Duration: 6.8ms | Allocations: 1753)
+Completed 200 OK in 7ms (Views: 1.2ms | ActiveRecord: 5.8ms | Allocations: 1961)
+Started GET "/quotes/new" for 127.0.0.1 at 2023-06-04 15:45:56 +0900
+Processing by QuotesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/new.html.erb within layouts/application
+  Rendered quotes/_form.html.erb (Duration: 0.8ms | Allocations: 797)
+  Rendered quotes/new.html.erb within layouts/application (Duration: 1.7ms | Allocations: 1113)
+  Rendered layout layouts/application.html.erb (Duration: 2.1ms | Allocations: 2007)
+Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.0ms | Allocations: 2280)
+Started POST "/quotes" for 127.0.0.1 at 2023-06-04 15:45:56 +0900
+Processing by QuotesController#create as TURBO_STREAM
+  Parameters: {"quote"=>{"name"=>"Capybara quote"}, "commit"=>"作成"}
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mQuote Create (0.4ms)[0m  [1m[32mINSERT INTO "quotes" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Capybara quote"], ["created_at", "2023-06-04 06:45:56.828687"], ["updated_at", "2023-06-04 06:45:56.828687"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://127.0.0.1:52201/quotes
+Completed 302 Found in 2ms (ActiveRecord: 1.1ms | Allocations: 1126)
+Started GET "/quotes" for 127.0.0.1 at 2023-06-04 15:45:56 +0900
+Processing by QuotesController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/index.html.erb within layouts/application
+  [1m[36mQuote Load (0.3ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes"[0m
+  Rendered collection of quotes/_quote.html.erb [4 times] (Duration: 0.4ms | Allocations: 836)
+  Rendered quotes/index.html.erb within layouts/application (Duration: 1.3ms | Allocations: 1628)
+  Rendered layout layouts/application.html.erb (Duration: 1.7ms | Allocations: 2521)
+Completed 200 OK in 2ms (Views: 1.5ms | ActiveRecord: 0.3ms | Allocations: 2735)
+  [1m[36mTRANSACTION (3.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "quotes" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.8ms)[0m  [1m[31mDELETE FROM "quotes";
+INSERT INTO "quotes" ("id", "name", "created_at", "updated_at") VALUES (309456473, 'First quote', '2023-06-04 06:47:15.786388', '2023-06-04 06:47:15.786388'), (908005739, 'Second quote', '2023-06-04 06:47:15.786388', '2023-06-04 06:47:15.786388'), (607264868, 'Third quote', '2023-06-04 06:47:15.786388', '2023-06-04 06:47:15.786388')[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "quotes" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (7.4ms)[0m  [1m[35mdo $$
+  declare r record;
+BEGIN
+FOR r IN (
+  SELECT FORMAT(
+    'UPDATE pg_constraint SET convalidated=false WHERE conname = ''%I'' AND connamespace::regnamespace = ''%I''::regnamespace; ALTER TABLE %I.%I VALIDATE CONSTRAINT %I;',
+    constraint_name,
+    table_schema,
+    table_schema,
+    table_name,
+    constraint_name
+  ) AS constraint_check
+  FROM information_schema.table_constraints WHERE constraint_type = 'FOREIGN KEY'
+)
+  LOOP
+    EXECUTE (r.constraint_check);
+  END LOOP;
+END;
+$$;
+[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+--------------------------------
+QuotesTest: test_Showing_a_quote
+--------------------------------
+  [1m[36mQuote Load (0.1ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT $2[0m  [["id", 309456473], ["LIMIT", 1]]
+Started GET "/quotes" for 127.0.0.1 at 2023-06-04 15:47:17 +0900
+Processing by QuotesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/index.html.erb within layouts/application
+  [1m[36mQuote Load (0.5ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes"[0m
+  Rendered collection of quotes/_quote.html.erb [3 times] (Duration: 0.7ms | Allocations: 851)
+  Rendered quotes/index.html.erb within layouts/application (Duration: 2.6ms | Allocations: 1595)
+  Rendered layout layouts/application.html.erb (Duration: 29.0ms | Allocations: 21044)
+Completed 200 OK in 36ms (Views: 30.3ms | ActiveRecord: 0.5ms | Allocations: 27334)
+Started GET "/assets/application-a72913f4c604bc8f97dd576fc8777bf029401f6af0e14b6a6c9d3874acfe73e4.css" for 127.0.0.1 at 2023-06-04 15:47:17 +0900
+Started GET "/assets/application-7f36c5cb2ad2a6fbd98a7ef3472afbc7adc448d6665ecb846ebcd1633a265f21.js" for 127.0.0.1 at 2023-06-04 15:47:17 +0900
+Started GET "/quotes/309456473" for 127.0.0.1 at 2023-06-04 15:47:17 +0900
+Processing by QuotesController#show as HTML
+  Parameters: {"id"=>"309456473"}
+  [1m[36mQuote Load (3.2ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT $2[0m  [["id", 309456473], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/show.html.erb within layouts/application
+  Rendered quotes/show.html.erb within layouts/application (Duration: 1.3ms | Allocations: 318)
+  Rendered layout layouts/application.html.erb (Duration: 1.8ms | Allocations: 1206)
+Completed 200 OK in 6ms (Views: 2.0ms | ActiveRecord: 3.2ms | Allocations: 1865)
+  [1m[36mTRANSACTION (6.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+---------------------------------
+QuotesTest: test_Updating_a_quote
+---------------------------------
+  [1m[36mQuote Load (0.5ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT $2[0m  [["id", 309456473], ["LIMIT", 1]]
+Started GET "/quotes" for 127.0.0.1 at 2023-06-04 15:47:17 +0900
+Processing by QuotesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/index.html.erb within layouts/application
+  [1m[36mQuote Load (0.4ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes"[0m
+  Rendered collection of quotes/_quote.html.erb [3 times] (Duration: 0.2ms | Allocations: 631)
+  Rendered quotes/index.html.erb within layouts/application (Duration: 1.1ms | Allocations: 864)
+  Rendered layout layouts/application.html.erb (Duration: 1.4ms | Allocations: 1757)
+Completed 200 OK in 2ms (Views: 1.2ms | ActiveRecord: 0.4ms | Allocations: 1966)
+Started GET "/quotes/309456473/edit" for 127.0.0.1 at 2023-06-04 15:47:17 +0900
+Processing by QuotesController#edit as HTML
+  Parameters: {"id"=>"309456473"}
+  [1m[36mQuote Load (10.3ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT $2[0m  [["id", 309456473], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/edit.html.erb within layouts/application
+  Rendered quotes/_form.html.erb (Duration: 15.0ms | Allocations: 13453)
+  Rendered quotes/edit.html.erb within layouts/application (Duration: 16.8ms | Allocations: 14324)
+  Rendered layout layouts/application.html.erb (Duration: 17.1ms | Allocations: 15212)
+Completed 200 OK in 28ms (Views: 17.3ms | ActiveRecord: 10.3ms | Allocations: 16518)
+Started PATCH "/quotes/309456473" for 127.0.0.1 at 2023-06-04 15:47:17 +0900
+Processing by QuotesController#update as TURBO_STREAM
+  Parameters: {"quote"=>{"name"=>"Updated quote"}, "commit"=>"Update quote", "id"=>"309456473"}
+  [1m[36mCACHE Quote Load (0.0ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT $2[0m  [["id", 309456473], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mQuote Update (0.6ms)[0m  [1m[33mUPDATE "quotes" SET "name" = $1, "updated_at" = $2 WHERE "quotes"."id" = $3[0m  [["name", "Updated quote"], ["updated_at", "2023-06-04 06:47:17.947542"], ["id", 309456473]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://127.0.0.1:52542/quotes
+Completed 302 Found in 3ms (ActiveRecord: 0.9ms | Allocations: 1343)
+Started GET "/quotes" for 127.0.0.1 at 2023-06-04 15:47:17 +0900
+Processing by QuotesController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/index.html.erb within layouts/application
+  [1m[36mQuote Load (1.3ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes"[0m
+  Rendered collection of quotes/_quote.html.erb [3 times] (Duration: 0.2ms | Allocations: 630)
+  Rendered quotes/index.html.erb within layouts/application (Duration: 2.0ms | Allocations: 914)
+  Rendered layout layouts/application.html.erb (Duration: 2.5ms | Allocations: 2189)
+Completed 200 OK in 3ms (Views: 1.4ms | ActiveRecord: 1.3ms | Allocations: 2553)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------
+QuotesTest: test_Creating_a_new_quote
+-------------------------------------
+  [1m[36mQuote Load (0.2ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT $2[0m  [["id", 309456473], ["LIMIT", 1]]
+Started GET "/quotes" for 127.0.0.1 at 2023-06-04 15:47:18 +0900
+Processing by QuotesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/index.html.erb within layouts/application
+  [1m[36mQuote Load (0.6ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes"[0m
+  Rendered collection of quotes/_quote.html.erb [3 times] (Duration: 0.3ms | Allocations: 628)
+  Rendered quotes/index.html.erb within layouts/application (Duration: 1.2ms | Allocations: 860)
+  Rendered layout layouts/application.html.erb (Duration: 1.5ms | Allocations: 1753)
+Completed 200 OK in 2ms (Views: 1.1ms | ActiveRecord: 0.6ms | Allocations: 1961)
+Started GET "/quotes/new" for 127.0.0.1 at 2023-06-04 15:47:18 +0900
+Processing by QuotesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/new.html.erb within layouts/application
+  Rendered quotes/_form.html.erb (Duration: 0.7ms | Allocations: 762)
+  Rendered quotes/new.html.erb within layouts/application (Duration: 2.2ms | Allocations: 1165)
+  Rendered layout layouts/application.html.erb (Duration: 2.8ms | Allocations: 2509)
+Completed 200 OK in 3ms (Views: 3.0ms | ActiveRecord: 0.0ms | Allocations: 2791)
+Started POST "/quotes" for 127.0.0.1 at 2023-06-04 15:47:18 +0900
+Processing by QuotesController#create as TURBO_STREAM
+  Parameters: {"quote"=>{"name"=>"Capybara quote"}, "commit"=>"Create quote"}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mQuote Create (0.7ms)[0m  [1m[32mINSERT INTO "quotes" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Capybara quote"], ["created_at", "2023-06-04 06:47:18.248943"], ["updated_at", "2023-06-04 06:47:18.248943"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://127.0.0.1:52542/quotes
+Completed 302 Found in 2ms (ActiveRecord: 0.9ms | Allocations: 721)
+Started GET "/quotes" for 127.0.0.1 at 2023-06-04 15:47:18 +0900
+Processing by QuotesController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/index.html.erb within layouts/application
+  [1m[36mQuote Load (0.3ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes"[0m
+  Rendered collection of quotes/_quote.html.erb [4 times] (Duration: 0.3ms | Allocations: 836)
+  Rendered quotes/index.html.erb within layouts/application (Duration: 1.0ms | Allocations: 1083)
+  Rendered layout layouts/application.html.erb (Duration: 1.3ms | Allocations: 1976)
+Completed 200 OK in 2ms (Views: 1.2ms | ActiveRecord: 0.3ms | Allocations: 2190)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------
+QuotesTest: test_Destroying_a_quote
+-----------------------------------
+  [1m[36mQuote Load (0.2ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT $2[0m  [["id", 309456473], ["LIMIT", 1]]
+Started GET "/quotes" for 127.0.0.1 at 2023-06-04 15:47:18 +0900
+Processing by QuotesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/index.html.erb within layouts/application
+  [1m[36mQuote Load (0.2ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes"[0m
+  Rendered collection of quotes/_quote.html.erb [3 times] (Duration: 0.3ms | Allocations: 628)
+  Rendered quotes/index.html.erb within layouts/application (Duration: 0.8ms | Allocations: 860)
+  Rendered layout layouts/application.html.erb (Duration: 1.1ms | Allocations: 1753)
+Completed 200 OK in 1ms (Views: 1.1ms | ActiveRecord: 0.2ms | Allocations: 1961)
+Started DELETE "/quotes/309456473" for 127.0.0.1 at 2023-06-04 15:47:18 +0900
+Processing by QuotesController#destroy as TURBO_STREAM
+  Parameters: {"id"=>"309456473"}
+  [1m[36mQuote Load (0.2ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT $2[0m  [["id", 309456473], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (7.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mQuote Destroy (3.7ms)[0m  [1m[31mDELETE FROM "quotes" WHERE "quotes"."id" = $1[0m  [["id", 309456473]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://127.0.0.1:52542/quotes
+Completed 302 Found in 12ms (ActiveRecord: 11.1ms | Allocations: 1436)
+Started GET "/quotes" for 127.0.0.1 at 2023-06-04 15:47:18 +0900
+Processing by QuotesController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/index.html.erb within layouts/application
+  [1m[36mQuote Load (0.2ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes"[0m
+  Rendered collection of quotes/_quote.html.erb [2 times] (Duration: 0.2ms | Allocations: 422)
+  Rendered quotes/index.html.erb within layouts/application (Duration: 0.7ms | Allocations: 647)
+  Rendered layout layouts/application.html.erb (Duration: 1.1ms | Allocations: 1540)
+Completed 200 OK in 1ms (Views: 1.1ms | ActiveRecord: 0.2ms | Allocations: 1753)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "quotes" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.9ms)[0m  [1m[31mDELETE FROM "quotes";
+INSERT INTO "quotes" ("id", "name", "created_at", "updated_at") VALUES (309456473, 'First quote', '2023-06-04 06:49:53.154885', '2023-06-04 06:49:53.154885'), (908005739, 'Second quote', '2023-06-04 06:49:53.154885', '2023-06-04 06:49:53.154885'), (607264868, 'Third quote', '2023-06-04 06:49:53.154885', '2023-06-04 06:49:53.154885')[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "quotes" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (6.0ms)[0m  [1m[35mdo $$
+  declare r record;
+BEGIN
+FOR r IN (
+  SELECT FORMAT(
+    'UPDATE pg_constraint SET convalidated=false WHERE conname = ''%I'' AND connamespace::regnamespace = ''%I''::regnamespace; ALTER TABLE %I.%I VALIDATE CONSTRAINT %I;',
+    constraint_name,
+    table_schema,
+    table_schema,
+    table_name,
+    constraint_name
+  ) AS constraint_check
+  FROM information_schema.table_constraints WHERE constraint_type = 'FOREIGN KEY'
+)
+  LOOP
+    EXECUTE (r.constraint_check);
+  END LOOP;
+END;
+$$;
+[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------
+QuotesTest: test_Creating_a_new_quote
+-------------------------------------
+  [1m[36mQuote Load (0.2ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT $2[0m  [["id", 309456473], ["LIMIT", 1]]
+Started GET "/quotes" for 127.0.0.1 at 2023-06-04 15:49:54 +0900
+Processing by QuotesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/index.html.erb within layouts/application
+  [1m[36mQuote Load (0.3ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes"[0m
+  Rendered collection of quotes/_quote.html.erb [3 times] (Duration: 0.6ms | Allocations: 851)
+  Rendered quotes/index.html.erb within layouts/application (Duration: 2.1ms | Allocations: 1595)
+  Rendered layout layouts/application.html.erb (Duration: 27.0ms | Allocations: 21236)
+Completed 200 OK in 34ms (Views: 28.3ms | ActiveRecord: 0.3ms | Allocations: 27526)
+Started GET "/assets/application-a72913f4c604bc8f97dd576fc8777bf029401f6af0e14b6a6c9d3874acfe73e4.css" for 127.0.0.1 at 2023-06-04 15:49:54 +0900
+Started GET "/assets/application-7f36c5cb2ad2a6fbd98a7ef3472afbc7adc448d6665ecb846ebcd1633a265f21.js" for 127.0.0.1 at 2023-06-04 15:49:54 +0900
+Started GET "/quotes/new" for 127.0.0.1 at 2023-06-04 15:49:54 +0900
+Processing by QuotesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/new.html.erb within layouts/application
+  Rendered quotes/_form.html.erb (Duration: 16.7ms | Allocations: 15083)
+  Rendered quotes/new.html.erb within layouts/application (Duration: 17.7ms | Allocations: 15492)
+  Rendered layout layouts/application.html.erb (Duration: 18.1ms | Allocations: 16389)
+Completed 200 OK in 19ms (Views: 18.3ms | ActiveRecord: 0.0ms | Allocations: 16672)
+Started POST "/quotes" for 127.0.0.1 at 2023-06-04 15:49:54 +0900
+Processing by QuotesController#create as TURBO_STREAM
+  Parameters: {"quote"=>{"name"=>"Capybara quote"}, "commit"=>"Create quote"}
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mQuote Create (0.5ms)[0m  [1m[32mINSERT INTO "quotes" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Capybara quote"], ["created_at", "2023-06-04 06:49:54.448481"], ["updated_at", "2023-06-04 06:49:54.448481"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://127.0.0.1:53131/quotes
+Completed 302 Found in 3ms (ActiveRecord: 0.9ms | Allocations: 1569)
+Started GET "/quotes" for 127.0.0.1 at 2023-06-04 15:49:54 +0900
+Processing by QuotesController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/index.html.erb within layouts/application
+  [1m[36mQuote Load (0.2ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes"[0m
+  Rendered collection of quotes/_quote.html.erb [4 times] (Duration: 0.3ms | Allocations: 837)
+  Rendered quotes/index.html.erb within layouts/application (Duration: 1.0ms | Allocations: 1133)
+  Rendered layout layouts/application.html.erb (Duration: 1.5ms | Allocations: 2410)
+Completed 200 OK in 2ms (Views: 1.5ms | ActiveRecord: 0.2ms | Allocations: 2772)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------
+QuotesTest: test_Destroying_a_quote
+-----------------------------------
+  [1m[36mQuote Load (0.2ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT $2[0m  [["id", 309456473], ["LIMIT", 1]]
+Started GET "/quotes" for 127.0.0.1 at 2023-06-04 15:49:54 +0900
+Processing by QuotesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/index.html.erb within layouts/application
+  [1m[36mQuote Load (0.2ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes"[0m
+  Rendered collection of quotes/_quote.html.erb [3 times] (Duration: 0.2ms | Allocations: 628)
+  Rendered quotes/index.html.erb within layouts/application (Duration: 0.8ms | Allocations: 860)
+  Rendered layout layouts/application.html.erb (Duration: 1.1ms | Allocations: 1753)
+Completed 200 OK in 1ms (Views: 1.1ms | ActiveRecord: 0.2ms | Allocations: 1961)
+Started DELETE "/quotes/309456473" for 127.0.0.1 at 2023-06-04 15:49:54 +0900
+Processing by QuotesController#destroy as TURBO_STREAM
+  Parameters: {"id"=>"309456473"}
+  [1m[36mQuote Load (0.3ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT $2[0m  [["id", 309456473], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mQuote Destroy (0.2ms)[0m  [1m[31mDELETE FROM "quotes" WHERE "quotes"."id" = $1[0m  [["id", 309456473]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://127.0.0.1:53131/quotes
+Completed 302 Found in 2ms (ActiveRecord: 0.7ms | Allocations: 637)
+Started GET "/quotes" for 127.0.0.1 at 2023-06-04 15:49:54 +0900
+Processing by QuotesController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/index.html.erb within layouts/application
+  [1m[36mQuote Load (0.3ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes"[0m
+  Rendered collection of quotes/_quote.html.erb [2 times] (Duration: 0.2ms | Allocations: 422)
+  Rendered quotes/index.html.erb within layouts/application (Duration: 0.9ms | Allocations: 1191)
+  Rendered layout layouts/application.html.erb (Duration: 1.3ms | Allocations: 2084)
+Completed 200 OK in 2ms (Views: 1.2ms | ActiveRecord: 0.3ms | Allocations: 2297)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+--------------------------------
+QuotesTest: test_Showing_a_quote
+--------------------------------
+  [1m[36mQuote Load (0.2ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT $2[0m  [["id", 309456473], ["LIMIT", 1]]
+Started GET "/quotes" for 127.0.0.1 at 2023-06-04 15:49:54 +0900
+Processing by QuotesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/index.html.erb within layouts/application
+  [1m[36mQuote Load (0.1ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes"[0m
+  Rendered collection of quotes/_quote.html.erb [3 times] (Duration: 0.2ms | Allocations: 628)
+  Rendered quotes/index.html.erb within layouts/application (Duration: 0.6ms | Allocations: 860)
+  Rendered layout layouts/application.html.erb (Duration: 1.0ms | Allocations: 1753)
+Completed 200 OK in 1ms (Views: 1.0ms | ActiveRecord: 0.1ms | Allocations: 1961)
+Started GET "/quotes/309456473" for 127.0.0.1 at 2023-06-04 15:49:54 +0900
+Processing by QuotesController#show as HTML
+  Parameters: {"id"=>"309456473"}
+  [1m[36mQuote Load (0.3ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT $2[0m  [["id", 309456473], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/show.html.erb within layouts/application
+  Rendered quotes/show.html.erb within layouts/application (Duration: 0.7ms | Allocations: 285)
+  Rendered layout layouts/application.html.erb (Duration: 1.1ms | Allocations: 1172)
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.3ms | Allocations: 1540)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+---------------------------------
+QuotesTest: test_Updating_a_quote
+---------------------------------
+  [1m[36mQuote Load (0.2ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT $2[0m  [["id", 309456473], ["LIMIT", 1]]
+Started GET "/quotes" for 127.0.0.1 at 2023-06-04 15:49:54 +0900
+Processing by QuotesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/index.html.erb within layouts/application
+  [1m[36mQuote Load (0.1ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes"[0m
+  Rendered collection of quotes/_quote.html.erb [3 times] (Duration: 0.2ms | Allocations: 630)
+  Rendered quotes/index.html.erb within layouts/application (Duration: 0.6ms | Allocations: 863)
+  Rendered layout layouts/application.html.erb (Duration: 0.9ms | Allocations: 1756)
+Completed 200 OK in 1ms (Views: 1.0ms | ActiveRecord: 0.1ms | Allocations: 1965)
+Started GET "/quotes/309456473/edit" for 127.0.0.1 at 2023-06-04 15:49:54 +0900
+Processing by QuotesController#edit as HTML
+  Parameters: {"id"=>"309456473"}
+  [1m[36mQuote Load (2.8ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT $2[0m  [["id", 309456473], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/edit.html.erb within layouts/application
+  Rendered quotes/_form.html.erb (Duration: 0.6ms | Allocations: 832)
+  Rendered quotes/edit.html.erb within layouts/application (Duration: 1.5ms | Allocations: 1152)
+  Rendered layout layouts/application.html.erb (Duration: 2.1ms | Allocations: 2345)
+Completed 200 OK in 6ms (Views: 2.3ms | ActiveRecord: 2.8ms | Allocations: 3343)
+Started PATCH "/quotes/309456473" for 127.0.0.1 at 2023-06-04 15:49:54 +0900
+Processing by QuotesController#update as TURBO_STREAM
+  Parameters: {"quote"=>{"name"=>"Updated quote"}, "commit"=>"Update quote", "id"=>"309456473"}
+  [1m[36mCACHE Quote Load (0.0ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."id" = $1 LIMIT $2[0m  [["id", 309456473], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mQuote Update (0.4ms)[0m  [1m[33mUPDATE "quotes" SET "name" = $1, "updated_at" = $2 WHERE "quotes"."id" = $3[0m  [["name", "Updated quote"], ["updated_at", "2023-06-04 06:49:54.882623"], ["id", 309456473]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://127.0.0.1:53131/quotes
+Completed 302 Found in 2ms (ActiveRecord: 0.6ms | Allocations: 1219)
+Started GET "/quotes" for 127.0.0.1 at 2023-06-04 15:49:54 +0900
+Processing by QuotesController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering quotes/index.html.erb within layouts/application
+  [1m[36mQuote Load (0.2ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes"[0m
+  Rendered collection of quotes/_quote.html.erb [3 times] (Duration: 0.2ms | Allocations: 629)
+  Rendered quotes/index.html.erb within layouts/application (Duration: 0.8ms | Allocations: 865)
+  Rendered layout layouts/application.html.erb (Duration: 1.2ms | Allocations: 1758)
+Completed 200 OK in 2ms (Views: 1.2ms | ActiveRecord: 0.2ms | Allocations: 1972)
+  [1m[36mTRANSACTION (5.2ms)[0m  [1m[31mROLLBACK[0m
