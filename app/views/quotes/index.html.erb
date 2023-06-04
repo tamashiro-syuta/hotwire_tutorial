@@ -1,17 +1,17 @@
 <main class="container">
   <div class="header">
     <h1>Quotes</h1>
-    <%# Turbo Drive あり %>
     <%= link_to "New quote",
                 new_quote_path,
-                class: "btn btn--primary" %>
-
-    <%# Turbo Drive なし %>
-    <%#= link_to "New quote",
-                new_quote_path,
                 class: "btn btn--primary",
-                data: { turbo: false } %>
+                data: { turbo_frame: dom_id(Quote.new) } %>
   </div>
 
-  <%= render @quotes %>
+  <%# 新しく追加したquote %>
+  <%= turbo_frame_tag Quote.new %>
+
+  <%= turbo_frame_tag "quotes" do %>
+    <%# 既存のquotesたち %>
+    <%= render @quotes %>
+  <% end %>
 </main>

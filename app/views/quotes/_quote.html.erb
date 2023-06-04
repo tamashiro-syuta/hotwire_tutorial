@@ -1,12 +1,18 @@
-<div class="quote">
-  <%= link_to quote.name, quote_path(quote) %>
-  <div class="quote__actions">
-    <%= button_to "Delete",
-                  quote_path(quote),
-                  method: :delete,
+<%#= 動的にTurboFrameを生成 %>
+<%#= IDの箇所にオブジェクト(quote)を渡すことで、turbo_frame_tagのヘルパーが自動でIDを設定してくれる %>
+<%= turbo_frame_tag quote do %>
+  <div class="quote">
+    <%= link_to quote.name,
+                quote_path(quote),
+                data: { turbo_frame: "_top" } %>
+    <div class="quote__actions">
+      <%= button_to "Delete",
+                    quote_path(quote),
+                    method: :delete,
+                    class: "btn btn--light" %>
+      <%= link_to "Edit",
+                  edit_quote_path(quote),
                   class: "btn btn--light" %>
-    <%= link_to "Edit",
-                edit_quote_path(quote),
-                class: "btn btn--light" %>
+    </div>
   </div>
-</div>
+<% end %>

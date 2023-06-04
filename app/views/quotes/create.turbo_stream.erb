@@ -1,0 +1,8 @@
+<%# idがquotesのTurboFrame(@quotes)の先頭に、@quote(createしたquote)を追加 %>
+<%= turbo_stream.prepend "quotes", partial: "quotes/quote", locals: { quote: @quote } %>
+
+<%# 上と下の書き方はそれぞれ同じ挙動をする %>
+<%#= turbo_stream.prepend "quotes", @quote %>
+
+<%# idがQuote.new = 追加したTurboFrameを初期化(空のコンテンツで更新) %>
+<%= turbo_stream.update Quote.new, "" %>

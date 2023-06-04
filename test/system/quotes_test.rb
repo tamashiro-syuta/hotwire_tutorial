@@ -4,7 +4,7 @@ class QuotesTest < ApplicationSystemTestCase
 
   # テストデータをセット
   setup do
-    @quote = quotes(:first)
+    @quote = Quote.ordered.first
   end
 
   test "Showing a quote" do

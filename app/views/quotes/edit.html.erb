@@ -5,5 +5,8 @@
     <h1>Edit quote</h1>
   </div>
 
-  <%= render "form", quote: @quote %>
+  <%# Quotes#edit と同じように動的に生成 %>
+  <%= turbo_frame_tag @quote do %>
+    <%= render "form", quote: @quote %>
+  <% end %>
 </main>
