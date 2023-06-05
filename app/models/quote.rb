@@ -7,4 +7,5 @@ class Quote < ApplicationRecord
   # broadcast_prepend_toメソッドは、Turboで定義されているメソッド
   # quotes/_quote.html.erbパーシャルを、ターゲット「quotes」によって識別された対象をTurbo Streamフォーマットでレンダリングして追加
   after_create_commit -> { broadcast_prepend_to "quotes" }
+  after_update_commit -> { broadcast_replace_to "quotes" }
 end
