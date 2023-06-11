@@ -579,6 +579,30 @@
   });
 
   // node_modules/@hotwired/turbo/dist/turbo.es2017-esm.js
+  var turbo_es2017_esm_exports = {};
+  __export(turbo_es2017_esm_exports, {
+    FrameElement: () => FrameElement,
+    FrameLoadingStyle: () => FrameLoadingStyle,
+    FrameRenderer: () => FrameRenderer,
+    PageRenderer: () => PageRenderer,
+    PageSnapshot: () => PageSnapshot,
+    StreamActions: () => StreamActions,
+    StreamElement: () => StreamElement,
+    StreamSourceElement: () => StreamSourceElement,
+    cache: () => cache,
+    clearCache: () => clearCache,
+    connectStreamSource: () => connectStreamSource,
+    disconnectStreamSource: () => disconnectStreamSource,
+    navigator: () => navigator$1,
+    registerAdapter: () => registerAdapter,
+    renderStreamMessage: () => renderStreamMessage,
+    session: () => session,
+    setConfirmMethod: () => setConfirmMethod,
+    setFormMode: () => setFormMode,
+    setProgressBarDelay: () => setProgressBarDelay,
+    start: () => start,
+    visit: () => visit
+  });
   (function() {
     if (window.Reflect === void 0 || window.customElements === void 0 || window.customElements.polyfillWrapFlushCallback) {
       return;
@@ -6802,5 +6826,8 @@
 
   // app/javascript/controllers/index.js
   application.register("hello", hello_controller_default);
+
+  // app/javascript/application.js
+  turbo_es2017_esm_exports.session.drive = false;
 })();
 //# sourceMappingURL=assets/application.js.map
