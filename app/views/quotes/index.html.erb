@@ -1,5 +1,6 @@
 <%# quotes stream を購読 %>
-<%= turbo_stream_from "quotes" %>
+<%# 会社ごとに異なる名前のturbo_streamを購読 %>
+<%= turbo_stream_from current_company, "quotes" %>
 
 <main class="container">
   <div class="header">

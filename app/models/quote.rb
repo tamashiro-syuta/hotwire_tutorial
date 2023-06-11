@@ -15,4 +15,5 @@ class Quote < ApplicationRecord
 
   # 上の3つのコールバックは下記のようにも書ける
   broadcasts_to ->(quote) { "quotes" }, inserts_by: :prepend
+  broadcasts_to ->(quote) { [quote.company, "quotes"] }, inserts_by: :prepend
 end
