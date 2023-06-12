@@ -7,4 +7,4 @@
 <%# 一度に1つのflashを画面に表示させる => replace %>
 
 <%# idがflashのDOMノードに layouts/flash パーシャルの内容をプリペンドするようTurboに指示 %>
-<%= turbo_stream.prepend "flash", partial: "layouts/flash" %>
+<%= render_turbo_stream_flash_messages %>
