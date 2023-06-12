@@ -6,3 +6,11 @@
 
 <%# idがQuote.new = 追加したTurboFrameを初期化(空のコンテンツで更新) %>
 <%= turbo_stream.update Quote.new, "" %>
+
+<%# flashがTurbo Streamレスポンスと連動するようにするには、flashをリストに前置きしたり、 %>
+<%# flashコンテナのコンテンツを更新するようにTurboに指示する行を追加する必要がある %>
+<%# flashを積み重ねて画面に表示させる  => prepend %>
+<%# 一度に1つのflashを画面に表示させる => replace %>
+
+<%# idがflashのDOMノードに layouts/flash パーシャルの内容をプリペンドするようTurboに指示 %>
+<%= turbo_stream.prepend "flash", partial: "layouts/flash" %>
