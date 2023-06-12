@@ -6824,8 +6824,15 @@
     }
   };
 
+  // app/javascript/controllers/removals_controller.js
+  var removals_controller_default = class extends Controller {
+    connect() {
+    }
+  };
+
   // app/javascript/controllers/index.js
   application.register("hello", hello_controller_default);
+  application.register("removals", removals_controller_default);
 
   // app/javascript/application.js
   turbo_es2017_esm_exports.session.drive = false;
