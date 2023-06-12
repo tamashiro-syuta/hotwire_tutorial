@@ -1,7 +1,8 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="removals"
 export default class extends Controller {
-  connect() {
+  // Controllerに取り付けられているDOMを削除
+  remove() {
+    this.element.remove()
   }
 }
